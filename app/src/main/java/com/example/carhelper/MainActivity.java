@@ -19,7 +19,7 @@ import com.example.carhelper.UIHelper.MyAdapter;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity{
+public class MainActivity extends AppCompatActivity {
 
     ArrayList<Item> dataCars = new ArrayList<Item>();
     ListView listView;
@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity{
     SQLiteDatabase myDB;
     MyAdapter mAdapter;
 
-    private void initDB(){
+    private void initDB() {
         myDB = openOrCreateDatabase("my.db", MODE_PRIVATE, null);
         myDB.execSQL(
                 "CREATE TABLE IF NOT EXISTS CARS (NAME VARCHAR(200), CAR_SIGN  VARCHAR(200), YEAR VARCHAR(4), MILEAGE INT)"
@@ -35,13 +35,13 @@ public class MainActivity extends AppCompatActivity{
         dataCars.clear();
         Cursor myCursor =
                 myDB.rawQuery("SELECT * FROM CARS", null);
-        while(myCursor.moveToNext()) {
+        while (myCursor.moveToNext()) {
             dataCars.add(new Item(myCursor.getString(0), myCursor.getString(1)));
         }
         myCursor.close();
     }
 
-    protected void makeHeaderActivity(){
+    protected void makeHeaderActivity() {
         getSupportActionBar().setTitle("Помощник автомобилиста");
         getSupportActionBar().setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.mainThemeColor)));
     }
@@ -55,10 +55,10 @@ public class MainActivity extends AppCompatActivity{
 
         initDB();
         listView = findViewById(R.id.listView);
-        mAdapter = new MyAdapter(this,dataCars);
+        mAdapter = new MyAdapter(this, dataCars);
         listView.setAdapter(mAdapter);
 
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(MainActivity.this, MainMenu.class);

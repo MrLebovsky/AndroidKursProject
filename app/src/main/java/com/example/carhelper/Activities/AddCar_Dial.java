@@ -16,7 +16,7 @@ import android.widget.EditText;
 
 import com.example.carhelper.R;
 
-public class AddCar_Dial extends AppCompatActivity{
+public class AddCar_Dial extends AppCompatActivity {
 
     SQLiteDatabase myDB;
     ContentValues row;
@@ -24,16 +24,16 @@ public class AddCar_Dial extends AppCompatActivity{
     private EditText nameET, car_singET, yearET, mileageET;
     static final String TAG = "AddCar_Dial";
 
-    protected void makeHeaderActivity(){
+    protected void makeHeaderActivity() {
         getSupportActionBar().setTitle("Помощник автомобилиста");
         getSupportActionBar().setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.mainThemeColor)));
     }
 
-    private void parseTheData(){
+    private void parseTheData() {
         String name, car_sing, year;
         int mileage;
 
-        try{
+        try {
             name = nameET.getText().toString();
             year = yearET.getText().toString();
             car_sing = car_singET.getText().toString();
@@ -45,21 +45,19 @@ public class AddCar_Dial extends AppCompatActivity{
             row.put("MILEAGE", mileage);
 
             myDB.insert("CARS", null, row);
-        }
-        catch(Exception exp){
+        } catch (Exception exp) {
             Log.d(TAG, "Error: " + exp.getMessage());
         }
     }
 
-    protected boolean isGoodData(){
-        if(nameET.getText().toString() != "" && yearET.getText().toString() != ""
-        && car_singET.getText().toString() != "" && mileageET.getText().toString() != ""){
+    protected boolean isGoodData() {
+        if (nameET.getText().length() != 0 && yearET.getText().length() != 0
+                && car_singET.getText().length() != 0 && mileageET.getText().length() != 0) {
             return true;
-        }
-        else return false;
+        } else return false;
     }
 
-    protected void ShowErrorMess(){
+    protected void ShowErrorMess() {
         AlertDialog.Builder builder = new AlertDialog.Builder(AddCar_Dial.this);
         builder.setTitle("Ошибка ввода")
                 .setMessage("Пожалуйста, заполните все данные!")
@@ -74,6 +72,7 @@ public class AddCar_Dial extends AppCompatActivity{
         AlertDialog alert = builder.create();
         alert.show();
     }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -98,7 +97,7 @@ public class AddCar_Dial extends AppCompatActivity{
                     parseTheData();
                     setResult(Activity.RESULT_OK);
                     finish();
-                }else{
+                } else {
                     ShowErrorMess();
                 }
             }
@@ -107,7 +106,7 @@ public class AddCar_Dial extends AppCompatActivity{
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               //close dialog
+                //close dialog
                 setResult(Activity.RESULT_CANCELED);
                 finish();
             }

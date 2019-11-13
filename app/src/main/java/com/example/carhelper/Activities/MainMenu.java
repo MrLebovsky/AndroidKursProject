@@ -12,7 +12,7 @@ public class MainMenu extends AppCompatActivity {
 
     TextView carInfo;
 
-    protected void makeHeaderActivity(){
+    protected void makeHeaderActivity() {
         getSupportActionBar().setTitle("Помощник автомобилиста");
         getSupportActionBar().setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.mainThemeColor)));
     }
