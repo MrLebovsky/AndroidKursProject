@@ -17,7 +17,7 @@ import com.example.carhelper.R;
 
 public class AddCarDial extends AppCompatActivity {
 
-    CarDB dbase = new CarDB(this);
+    CarDB dBase = new CarDB(this);
     Button ok, cancel;
     private EditText nameET, car_singET, yearET, mileageET;
     static final String TAG = "AddCarDial";
@@ -37,17 +37,15 @@ public class AddCarDial extends AppCompatActivity {
             sing = car_singET.getText().toString();
             mileage = Integer.parseInt(mileageET.getText().toString());
 
-            dbase.insertCar(name, year, sing, mileage);
+            dBase.insertCar(name, year, sing, mileage);
         } catch (Exception exp) {
             Log.d(TAG, "Error: " + exp.getMessage());
         }
     }
 
     protected boolean isGoodData() {
-        if (nameET.getText().length() != 0 && yearET.getText().length() != 0
-                && car_singET.getText().length() != 0 && mileageET.getText().length() != 0) {
-            return true;
-        } else return false;
+        return nameET.getText().length() != 0 && yearET.getText().length() != 0
+                && car_singET.getText().length() != 0 && mileageET.getText().length() != 0;
     }
 
     protected void ShowErrorMess() {
@@ -71,7 +69,7 @@ public class AddCarDial extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         makeHeaderActivity();
         setContentView(R.layout.activity_add_car__dial);
-        dbase.open();
+        dBase.open();
 
         ok = findViewById(R.id.button);
         cancel = findViewById(R.id.button2);
