@@ -10,12 +10,12 @@ import android.widget.TextView;
 
 import com.example.carhelper.R;
 
-public class MyAdapter extends BaseAdapter {
+public class CarListAdapter extends BaseAdapter {
 
     ArrayList<Item> data = new ArrayList<Item>();
     Context context;
 
-    public MyAdapter(Context context, ArrayList<Item> arr) {
+    public CarListAdapter(Context context, ArrayList<Item> arr) {
         if (arr != null) {
             data = arr;
         }

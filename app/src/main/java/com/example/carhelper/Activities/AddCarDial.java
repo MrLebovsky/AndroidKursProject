@@ -1,12 +1,8 @@
 package com.example.carhelper.Activities;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.content.ContentValues;
 import android.content.DialogInterface;
-import android.database.sqlite.SQLiteDatabase;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.util.Log;
@@ -14,15 +10,17 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.carhelper.DBHelper.CarDB;
 import com.example.carhelper.R;
 
-public class AddCar_Dial extends AppCompatActivity {
+public class AddCarDial extends AppCompatActivity {
 
-    SQLiteDatabase myDB;
-    ContentValues row;
+    CarDB dbase = new CarDB(this);
     Button ok, cancel;
     private EditText nameET, car_singET, yearET, mileageET;
-    static final String TAG = "AddCar_Dial";
+    static final String TAG = "AddCarDial";
 
     protected void makeHeaderActivity() {
         getSupportActionBar().setTitle("Помощник автомобилиста");
@@ -30,21 +28,16 @@ public class AddCar_Dial extends AppCompatActivity {
     }
 
     private void parseTheData() {
-        String name, car_sing, year;
+        String name, sing, year;
         int mileage;
 
         try {
             name = nameET.getText().toString();
             year = yearET.getText().toString();
-            car_sing = car_singET.getText().toString();
+            sing = car_singET.getText().toString();
             mileage = Integer.parseInt(mileageET.getText().toString());
 
-            row.put("NAME", name);
-            row.put("CAR_SIGN", car_sing);
-            row.put("YEAR", year);
-            row.put("MILEAGE", mileage);
-
-            myDB.insert("CARS", null, row);
+            dbase.insertCar(name, year, sing, mileage);
         } catch (Exception exp) {
             Log.d(TAG, "Error: " + exp.getMessage());
         }
@@ -58,7 +51,7 @@ public class AddCar_Dial extends AppCompatActivity {
     }
 
     protected void ShowErrorMess() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(AddCar_Dial.this);
+        AlertDialog.Builder builder = new AlertDialog.Builder(AddCarDial.this);
         builder.setTitle("Ошибка ввода")
                 .setMessage("Пожалуйста, заполните все данные!")
                 //.setIcon(R.drawable.ic_android_cat)
@@ -78,6 +71,7 @@ public class AddCar_Dial extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         makeHeaderActivity();
         setContentView(R.layout.activity_add_car__dial);
+        dbase.open();
 
         ok = findViewById(R.id.button);
         cancel = findViewById(R.id.button2);
@@ -85,9 +79,6 @@ public class AddCar_Dial extends AppCompatActivity {
         car_singET = findViewById(R.id.editText2);
         yearET = findViewById(R.id.editText3);
         mileageET = findViewById(R.id.editText4);
-
-        row = new ContentValues();
-        myDB = openOrCreateDatabase("my.db", MODE_PRIVATE, null);
 
 
         ok.setOnClickListener(new View.OnClickListener() {
@@ -106,7 +97,6 @@ public class AddCar_Dial extends AppCompatActivity {
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //close dialog
                 setResult(Activity.RESULT_CANCELED);
                 finish();
             }

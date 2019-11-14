@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".Activities.MainMenu"></activity>
-        <activity android:name=".Activities.AddCar_Dial" />
+        <activity android:name=".Activities.AddCarDial" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
