@@ -63,7 +63,10 @@ public class MainActivity extends AppCompatActivity implements HeaderActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(MainActivity.this, MainMenu.class);
                 Item selectedItem = (Item) mAdapter.getItem(position);
+
                 intent.putExtra("сarInfo", selectedItem.getHeader());
+                intent.putExtra("сarSign", selectedItem.getSubHeader());
+
                 startActivity(intent);
             }
         });

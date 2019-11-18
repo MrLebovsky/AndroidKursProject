@@ -62,4 +62,10 @@ public class MainMenu extends AppCompatActivity  implements HeaderActivity {
         startActivityForResult(intent, 1);
     }
 
+    public void onClickMaintenancePlan(View v) {
+        Intent intent = new Intent(this, MaintenancePlan.class);
+        intent.putExtra("сarSign", getIntent().getStringExtra("сarSign"));
+        startActivityForResult(intent, 1);
+    }
+
 }

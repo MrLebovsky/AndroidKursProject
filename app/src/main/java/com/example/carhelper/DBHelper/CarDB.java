@@ -40,6 +40,20 @@ public class CarDB {
         return dataCars;
     }
 
+    public String getCarInfoBySign(String iSign){
+
+        String res = "Нет данных";
+        Cursor myCursor =
+                database.rawQuery("SELECT * FROM CARS WHERE CAR_SIGN = '"+ iSign +"'", null);
+        while (myCursor.moveToNext()) {
+           res =  myCursor.getString(0) + "\nГ.Р.З.: "
+                   + myCursor.getString(1) + "\nГод выпуска: " +  myCursor.getString(2)
+                        + "\nПробег: " + myCursor.getString(3);
+        }
+        myCursor.close();
+        return res;
+    }
+
     public void insertCar(String name, String year, String sign, int mileage) {
         ContentValues row = new ContentValues();
 
