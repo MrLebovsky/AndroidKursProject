@@ -57,4 +57,9 @@ public class MainMenu extends AppCompatActivity  implements HeaderActivity {
         startActivityForResult(intent, 1);
     }
 
+    public void onClickTrafficLaws(View v) {
+        Intent intent = new Intent(this, TrafficLaws.class);
+        startActivityForResult(intent, 1);
+    }
+
 }

@@ -26,7 +26,6 @@ public class MainActivity extends AppCompatActivity implements HeaderActivity {
 
     AlertDialog.Builder ad;
     Context context;
-    boolean isDeleteCar;
     ArrayList<Item> dataCars = new ArrayList<Item>();
     ListView listView;
     Button AddCarBtn;
@@ -51,8 +50,6 @@ public class MainActivity extends AppCompatActivity implements HeaderActivity {
         makeHeaderActivity();
 
         context = MainActivity.this;
-
-        //initDialogManager();
 
         initDB();
         setContentView(R.layout.activity_main);
