@@ -1,5 +1,7 @@
 package com.example.carhelper;
 
+import android.app.AlertDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -13,37 +15,48 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.carhelper.Activities.AddCarDial;
 import com.example.carhelper.Activities.MainMenu;
 import com.example.carhelper.DBHelper.CarDB;
-import com.example.carhelper.UIHelper.Item;
 import com.example.carhelper.UIHelper.CarListAdapter;
+import com.example.carhelper.UIHelper.ChoiceOptionDlg;
+import com.example.carhelper.UIHelper.HeaderActivity;
+import com.example.carhelper.UIHelper.Item;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements HeaderActivity {
 
+    AlertDialog.Builder ad;
+    Context context;
+    boolean isDeleteCar;
     ArrayList<Item> dataCars = new ArrayList<Item>();
     ListView listView;
     Button AddCarBtn;
     CarListAdapter mAdapter;
     CarDB dbase;
 
-    protected void makeHeaderActivity() {
+    public void makeHeaderActivity() {
         getSupportActionBar().setTitle("Помощник автомобилиста");
         getSupportActionBar().setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.mainThemeColor)));
     }
 
-    private void initDB(){
+    private void initDB() {
         dbase = new CarDB(this);
         dbase.open();
         dataCars = dbase.getDataCars();
     }
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         makeHeaderActivity();
+
+        context = MainActivity.this;
+
+        //initDialogManager();
+
+        initDB();
         setContentView(R.layout.activity_main);
         AddCarBtn = findViewById(R.id.AddCarBtn);
-        initDB();
         listView = findViewById(R.id.listView);
         mAdapter = new CarListAdapter(this, dataCars);
         listView.setAdapter(mAdapter);
@@ -55,6 +68,19 @@ public class MainActivity extends AppCompatActivity {
                 Item selectedItem = (Item) mAdapter.getItem(position);
                 intent.putExtra("сarInfo", selectedItem.getHeader());
                 startActivity(intent);
+            }
+        });
+
+        listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+
+            @Override
+            public boolean onItemLongClick(AdapterView<?> arg0, View arg1,
+                                           int position, long arg3) {
+
+                Item selectedItem = (Item) mAdapter.getItem(position);
+                ChoiceOptionDlg dlg = new ChoiceOptionDlg(MainActivity.this, selectedItem.getSubHeader());
+                dlg.Show();
+                return true;
             }
         });
     }
@@ -69,4 +95,6 @@ public class MainActivity extends AppCompatActivity {
         dataCars = dbase.getDataCars();
         mAdapter.updateList(dataCars);
     }
+
+
 }

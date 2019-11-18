@@ -14,15 +14,16 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.carhelper.DBHelper.CarDB;
 import com.example.carhelper.R;
+import com.example.carhelper.UIHelper.HeaderActivity;
 
-public class AddCarDial extends AppCompatActivity {
+public class AddCarDial extends AppCompatActivity  implements HeaderActivity {
 
     CarDB dBase = new CarDB(this);
     Button ok, cancel;
     private EditText nameET, car_singET, yearET, mileageET;
     static final String TAG = "AddCarDial";
 
-    protected void makeHeaderActivity() {
+    public void makeHeaderActivity() {
         getSupportActionBar().setTitle("Помощник автомобилиста");
         getSupportActionBar().setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.mainThemeColor)));
     }

@@ -11,13 +11,14 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.carhelper.R;
+import com.example.carhelper.UIHelper.HeaderActivity;
 
-public class MainMenu extends AppCompatActivity {
+public class MainMenu extends AppCompatActivity  implements HeaderActivity {
 
     TextView carInfo;
     Button openMapBtn, aboutBtn, goToMainDisplatBtn, fuelCalcBtn;
 
-    protected void makeHeaderActivity() {
+    public void makeHeaderActivity() {
         getSupportActionBar().setTitle("Помощник автомобилиста");
         getSupportActionBar().setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.mainThemeColor)));
     }

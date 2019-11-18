@@ -51,6 +51,10 @@ public class CarDB {
         database.insert("CARS", null, row);
     }
 
+    public void deleteCar(String sing){
+        database.delete("CARS","CAR_SIGN = '" + sing + "'", null );
+    }
+
     public void setDataCars(ArrayList<Item> dataCars) {
         this.dataCars = dataCars;
     }

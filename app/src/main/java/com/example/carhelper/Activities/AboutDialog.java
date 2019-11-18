@@ -7,12 +7,13 @@ import android.os.Bundle;
 import android.widget.ImageView;
 
 import com.example.carhelper.R;
+import com.example.carhelper.UIHelper.HeaderActivity;
 
-public class AboutDialog extends AppCompatActivity {
+public class AboutDialog extends AppCompatActivity  implements HeaderActivity {
 
     ImageView imageView;
 
-    protected void makeHeaderActivity() {
+    public void makeHeaderActivity() {
         getSupportActionBar().setTitle("Справка");
         getSupportActionBar().setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.mainThemeColor)));
     }

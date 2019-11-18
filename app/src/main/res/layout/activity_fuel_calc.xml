@@ -165,6 +165,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="32dp"
         android:text="Средний расход"
+        android:visibility="invisible"
         app:layout_constraintBottom_toTopOf="@+id/textView29"
         app:layout_constraintStart_toStartOf="@+id/textView26" />
 
@@ -214,6 +215,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="332dp"
         android:text="литров на 100 км"
+        android:visibility="invisible"
         app:layout_constraintStart_toStartOf="@+id/textView27"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -223,6 +225,7 @@
         android:layout_height="wrap_content"
         android:text="0"
         android:textStyle="bold"
+        android:visibility="invisible"
         app:layout_constraintStart_toStartOf="@+id/textView22"
         app:layout_constraintTop_toTopOf="@+id/textView27" />
 
