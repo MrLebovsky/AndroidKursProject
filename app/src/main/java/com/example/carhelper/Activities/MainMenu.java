@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.carhelper.Dialogs.AboutDlg;
 import com.example.carhelper.R;
 import com.example.carhelper.UIHelper.HeaderActivity;
 
@@ -43,7 +44,7 @@ public class MainMenu extends AppCompatActivity  implements HeaderActivity {
     }
 
     public void onClickAbout(View v) {
-        Intent intent = new Intent(this, AboutDialog.class);
+        Intent intent = new Intent(this, AboutDlg.class);
         startActivityForResult(intent, 1);
     }
 

@@ -1,4 +1,4 @@
-package com.example.carhelper.Activities;
+package com.example.carhelper.Dialogs;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -16,12 +16,12 @@ import com.example.carhelper.DBHelper.CarDB;
 import com.example.carhelper.R;
 import com.example.carhelper.UIHelper.HeaderActivity;
 
-public class AddCarDial extends AppCompatActivity  implements HeaderActivity {
+public class AddCarDlg extends AppCompatActivity  implements HeaderActivity {
 
     CarDB dBase = new CarDB(this);
     Button ok, cancel;
     private EditText nameET, car_singET, yearET, mileageET;
-    static final String TAG = "AddCarDial";
+    static final String TAG = "AddCarDlg";
 
     public void makeHeaderActivity() {
         getSupportActionBar().setTitle("Помощник автомобилиста");
@@ -50,7 +50,7 @@ public class AddCarDial extends AppCompatActivity  implements HeaderActivity {
     }
 
     protected void ShowErrorMess() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(AddCarDial.this);
+        AlertDialog.Builder builder = new AlertDialog.Builder(AddCarDlg.this);
         builder.setTitle("Ошибка ввода")
                 .setMessage("Пожалуйста, заполните все данные!")
                 //.setIcon(R.drawable.ic_android_cat)

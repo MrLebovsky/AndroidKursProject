@@ -12,13 +12,13 @@ import android.widget.ListView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.carhelper.Activities.AddCarDial;
+import com.example.carhelper.Dialogs.AddCarDlg;
 import com.example.carhelper.Activities.MainMenu;
 import com.example.carhelper.DBHelper.CarDB;
-import com.example.carhelper.UIHelper.CarListAdapter;
-import com.example.carhelper.UIHelper.ChoiceOptionDlg;
+import com.example.carhelper.ListAdapters.CarListAdapter;
+import com.example.carhelper.Dialogs.ChoiceOptionDlg;
 import com.example.carhelper.UIHelper.HeaderActivity;
-import com.example.carhelper.UIHelper.Item;
+import com.example.carhelper.ListItems.Item;
 
 import java.util.ArrayList;
 
@@ -40,6 +40,7 @@ public class MainActivity extends AppCompatActivity implements HeaderActivity {
     private void initDB() {
         dbase = new CarDB(this);
         dbase.open();
+        //dbase.upgradeDB(); пересоздание БДшки
         dataCars = dbase.getDataCars();
     }
 
@@ -86,7 +87,7 @@ public class MainActivity extends AppCompatActivity implements HeaderActivity {
     }
 
     public void onClickAddCar(View v) {
-        Intent intent = new Intent(this, AddCarDial.class);
+        Intent intent = new Intent(this, AddCarDlg.class);
         startActivityForResult(intent, 1);
     }
 
@@ -95,6 +96,4 @@ public class MainActivity extends AppCompatActivity implements HeaderActivity {
         dataCars = dbase.getDataCars();
         mAdapter.updateList(dataCars);
     }
-
-
 }

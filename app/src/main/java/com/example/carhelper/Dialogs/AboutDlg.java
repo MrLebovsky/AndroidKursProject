@@ -1,4 +1,4 @@
-package com.example.carhelper.Activities;
+package com.example.carhelper.Dialogs;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -9,7 +9,7 @@ import android.widget.ImageView;
 import com.example.carhelper.R;
 import com.example.carhelper.UIHelper.HeaderActivity;
 
-public class AboutDialog extends AppCompatActivity  implements HeaderActivity {
+public class AboutDlg extends AppCompatActivity  implements HeaderActivity {
 
     ImageView imageView;
 

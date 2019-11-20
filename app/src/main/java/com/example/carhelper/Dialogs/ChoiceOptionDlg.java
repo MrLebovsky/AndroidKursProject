@@ -1,4 +1,4 @@
-package com.example.carhelper.UIHelper;
+package com.example.carhelper.Dialogs;
 
 import android.app.AlertDialog;
 import android.content.Context;

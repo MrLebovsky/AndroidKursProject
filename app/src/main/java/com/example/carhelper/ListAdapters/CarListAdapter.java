@@ -1,4 +1,4 @@
-package com.example.carhelper.UIHelper;
+package com.example.carhelper.ListAdapters;
 
 import java.util.ArrayList;
 import android.content.Context;
@@ -9,6 +9,7 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.example.carhelper.R;
+import com.example.carhelper.ListItems.Item;
 
 public class CarListAdapter extends BaseAdapter {
 
@@ -49,14 +50,14 @@ public class CarListAdapter extends BaseAdapter {
             someView = inflater.inflate(R.layout.list_item, arg2, false);
         }
         //Обявляем наши текствьюшки и связываем их с разметкой
-        TextView header = (TextView) someView.findViewById(R.id.item_headerText);
-        TextView subHeader = (TextView) someView.findViewById(R.id.item_subHeaderText);
+        TextView header = someView.findViewById(R.id.item_headerText);
+        TextView subHeader = someView.findViewById(R.id.item_subHeaderText);
 
         //Устанавливаем в каждую текствьюшку соответствующий текст
         // сначала заголовок
-        header.setText(data.get(i).header);
+        header.setText(data.get(i).getHeader());
         // потом подзаголовок
-        subHeader.setText(data.get(i).subHeader);
+        subHeader.setText(data.get(i).getSubHeader());
         return someView;
     }
 

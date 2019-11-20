@@ -2,8 +2,8 @@ package com.example.carhelper.Activities;
 
 import com.example.carhelper.R;
 import com.example.carhelper.UIHelper.HeaderActivity;
-import com.example.carhelper.UIHelper.State;
-import com.example.carhelper.UIHelper.StateAdapter;
+import com.example.carhelper.ListItems.State;
+import com.example.carhelper.ListAdapters.StateAdapter;
 
 import androidx.appcompat.app.AppCompatActivity;
 

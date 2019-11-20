@@ -1,4 +1,4 @@
-package com.example.carhelper.UIHelper;
+package com.example.carhelper.ListAdapters;
 
 import android.content.Context;
 import android.util.Log;
@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.carhelper.R;
+import com.example.carhelper.ListItems.State;
 
 import java.util.List;
 
