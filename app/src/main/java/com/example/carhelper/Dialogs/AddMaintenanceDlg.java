@@ -145,6 +145,13 @@ public class AddMaintenanceDlg extends AppCompatActivity implements TextWatcher 
     public void afterTextChanged(Editable s) {
         datePlanET.setSelection(datePlanET.getText().toString().length());
         String input = datePlanET.getText().toString();
+        if (input.length() == 4) {
+            datePlanET.setText(datePlanET.getText().toString() + "-");
+        }
+        else if (input.length() == 7) {
+            datePlanET.setText(datePlanET.getText().toString() + "-");
+        }
+
         if (input.length() == 0)
             return;
 
