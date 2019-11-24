@@ -25,7 +25,7 @@ import java.util.regex.Pattern;
 
 public class AddMaintenanceDlg extends AppCompatActivity implements TextWatcher {
 
-    private EditText datePlanET, descriptionET;
+    private EditText datePlanET, descriptionET, milleageET;
     private Button AddMaintenanceBtn;
     private String iDate, iDescription;
     CarDB dBase = new CarDB(this);
@@ -59,9 +59,18 @@ public class AddMaintenanceDlg extends AppCompatActivity implements TextWatcher 
             int month = calendar.get(Calendar.MONTH);
             int day = calendar.get(Calendar.DAY_OF_MONTH);
 
-            return (year == thisYear && (month >= 0
+            return (year >= thisYear && (month >= 0
                     && month <= 11) && (day > 0 && day <= 31));
         } else {
+            return false;
+        }
+    }
+
+    private boolean isValidNumber(String number) {
+        try {
+            Integer.valueOf(number);
+            return true;
+        } catch (Exception exp) {
             return false;
         }
     }
@@ -69,7 +78,9 @@ public class AddMaintenanceDlg extends AppCompatActivity implements TextWatcher 
     private boolean parseTheData() {
         if (!isValidDate(datePlanET.getText().toString()))
             return false;
-        else return descriptionET.getText().toString().length() <= 500;
+        else if (!isValidNumber(milleageET.getText().toString())) {
+            return false;
+        } else return descriptionET.getText().toString().length() <= 500;
     }
 
     @Override
@@ -81,6 +92,7 @@ public class AddMaintenanceDlg extends AppCompatActivity implements TextWatcher 
 
         datePlanET = findViewById(R.id.editText7);
         descriptionET = findViewById(R.id.editText8);
+        milleageET = findViewById(R.id.editText10);
         AddMaintenanceBtn = findViewById(R.id.button8);
 
         datePlanET.addTextChangedListener(this);
@@ -93,7 +105,8 @@ public class AddMaintenanceDlg extends AppCompatActivity implements TextWatcher 
                 } else {
                     try {
                         dBase.insertMaintenance(getIntent().getStringExtra("сarSign"),
-                                datePlanET.getText().toString(), descriptionET.getText().toString());
+                                datePlanET.getText().toString(),
+                                    Integer.valueOf(milleageET.getText().toString()), descriptionET.getText().toString());
                     } catch (Exception exp) {
                         Log.d(TAG, "Error: " + exp.getMessage());
                     }

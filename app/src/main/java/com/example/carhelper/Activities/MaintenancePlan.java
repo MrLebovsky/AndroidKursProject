@@ -55,6 +55,7 @@ public class MaintenancePlan extends AppCompatActivity implements HeaderActivity
 
         mAdapter = new CarListAdapter(this, dataMaintenance);
         listView.setAdapter(mAdapter);
+
     }
 
     public void onClickAddMaintenancePlan(View v) {

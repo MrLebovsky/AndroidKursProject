@@ -9,7 +9,6 @@ import android.util.Log;
 
 import com.example.carhelper.ListItems.Item;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 public class CarDB {
@@ -52,7 +51,7 @@ public class CarDB {
         Cursor myCursor =
                 database.rawQuery("SELECT * FROM CAR_MAINTENANCE WHERE CAR_SIGN = '" + iSign + "'", null);
         while (myCursor.moveToNext()) {
-            dataMaintanence.add(new Item(myCursor.getString(2), myCursor.getString(1)));
+            dataMaintanence.add(new Item(myCursor.getString(3), myCursor.getString(1)));
         }
         myCursor.close();
         return dataMaintanence;
@@ -83,6 +82,7 @@ public class CarDB {
         database.insert("CARS", null, row);
     }
 
+    @Deprecated
     public Cursor getTablesBD() {
         Cursor c = database.rawQuery("SELECT name FROM sqlite_master WHERE type='table'", null);
         String s;
@@ -95,8 +95,8 @@ public class CarDB {
         return c;
     }
 
-    public void insertMaintenance(String carSign, String planDate, String description) {
-        Cursor c = getTablesBD();
+    public void insertMaintenance(String carSign, String planDate, int mileage, String description) {
+        //Cursor c = getTablesBD();
         try {
             ContentValues row = new ContentValues();
             //SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
@@ -104,6 +104,7 @@ public class CarDB {
 
             row.put("CAR_SIGN", carSign);
             row.put("PLAN_DATE", planDate);
+            row.put("MILEAGE", mileage);
             row.put("DESCRIPTION", description);
             database.insert("CAR_MAINTENANCE", null, row);
         } catch (Exception exp) {

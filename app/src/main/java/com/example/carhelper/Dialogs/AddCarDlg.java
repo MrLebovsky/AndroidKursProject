@@ -16,7 +16,7 @@ import com.example.carhelper.DBHelper.CarDB;
 import com.example.carhelper.R;
 import com.example.carhelper.UIHelper.HeaderActivity;
 
-public class AddCarDlg extends AppCompatActivity  implements HeaderActivity {
+public class AddCarDlg extends AppCompatActivity implements HeaderActivity {
 
     CarDB dBase = new CarDB(this);
     Button ok, cancel;
@@ -45,14 +45,26 @@ public class AddCarDlg extends AppCompatActivity  implements HeaderActivity {
     }
 
     protected boolean isGoodData() {
-        return nameET.getText().length() != 0 && yearET.getText().length() != 0
-                && car_singET.getText().length() != 0 && mileageET.getText().length() != 0;
+        if (nameET.getText().toString().trim().length() != 0
+                && yearET.getText().toString().trim().length() != 0
+                && car_singET.getText().toString().trim().length() != 0
+                && mileageET.getText().toString().trim().length() != 0) {
+            try {
+                Integer.parseInt(mileageET.getText().toString());
+                int year = Integer.parseInt(yearET.getText().toString());
+                return year >= 2019;
+            } catch (Exception exp) {
+                return false;
+            }
+        } else {
+            return false;
+        }
     }
 
     protected void ShowErrorMess() {
         AlertDialog.Builder builder = new AlertDialog.Builder(AddCarDlg.this);
         builder.setTitle("Ошибка ввода")
-                .setMessage("Пожалуйста, заполните все данные!")
+                .setMessage("Данные заполнены некорректно!")
                 //.setIcon(R.drawable.ic_android_cat)
                 .setCancelable(false)
                 .setNegativeButton("ОК, ща заполню",

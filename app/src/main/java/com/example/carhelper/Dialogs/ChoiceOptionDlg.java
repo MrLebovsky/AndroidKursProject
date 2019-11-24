@@ -10,6 +10,7 @@ import com.example.carhelper.Activities.MainMenu;
 import com.example.carhelper.DBHelper.CarDB;
 import com.example.carhelper.MainActivity;
 
+@Deprecated
 public class ChoiceOptionDlg extends DialogFragment {
 
     private static final String title = "Опции";
